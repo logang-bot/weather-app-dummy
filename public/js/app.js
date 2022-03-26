@@ -13,18 +13,16 @@ const messageTwo = document.querySelector("#message-2");
 const getWeather = (location) => {
   messageOne.textContent = "Loading...";
   messageTwo.textContent = "";
-  fetch(`http://localhost:3000/weather?address=${location}`).then(
-    (response) => {
-      response.json().then((data) => {
-        if (data.error) {
-          messageOne.textContent = data.error;
-          return;
-        }
-        messageOne.textContent = data.location;
-        messageTwo.textContent = data.forecast;
-      });
-    }
-  );
+  fetch(`/weather?address=${location}`).then((response) => {
+    response.json().then((data) => {
+      if (data.error) {
+        messageOne.textContent = data.error;
+        return;
+      }
+      messageOne.textContent = data.location;
+      messageTwo.textContent = data.forecast;
+    });
+  });
 };
 
 messageOne.textContent = "";
